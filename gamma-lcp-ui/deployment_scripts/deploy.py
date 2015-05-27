@@ -1,8 +1,10 @@
 #!/usr/bin/python
 
+
+import os
 import sys
 import yaml
-import os
+
 
 INPUT_YAML = '/etc/astute.yaml'
 OUTPUT_YAML = '/etc/hiera/override/plugins.yaml'
@@ -34,6 +36,7 @@ except Exception:
     out = None
 
 out = out or {}
+extra_vals = {}
 
 
 def convert_to_array(vals):
@@ -43,6 +46,16 @@ def convert_to_array(vals):
             res.pop(key)
             updated = [v.strip() for v in value.split(',')]
             res.update({key.replace('array_', ''): updated})
+        elif 'hash' in key:
+            res.pop(key)
+            updated = {}
+            for item in value.replace(' ', '').split(","):
+                item = item.split(':')
+                updated[item[0]] = item[1]
+            res.update({key.replace('hash_', ''): updated})
+        elif 'yaml' in key:
+            res.pop(key)
+            extra_vals[key.replace('yaml_', '')] = value
     return res
 
 
@@ -56,6 +69,7 @@ for key in keys:
         key = key.replace('array_', '')
         updated_key = convert_to_array(updated_key)
     out.update({key: updated_key})
+out.update(extra_vals)
 
 with open(OUTPUT_YAML, 'w') as f:
     f.write(yaml.dump(out, default_flow_style=False))
