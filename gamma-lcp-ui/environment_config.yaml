@@ -1,0 +1,124 @@
+attributes:
+  metadata:
+    label: "DCP variables"
+    weight: 90
+  # Gathering variables from user about our DCP
+  corosync_roles:
+    value: 'dbng, tmp'
+    label: 'Roles with corosync'
+    description: 'Enter roles divided by semicolon'
+    restrictions:
+      - action: hide
+    weight: 110
+    type: "text"
+    regex:
+      source: '\S'
+      error: "Error field cannot be empty"
+  lcp_lb_vip:
+    value: '135.0.0.1'
+    label: 'Load balacer VIP (LCP)'
+    description: 'The LCP`s Load Balancer Vitrual IP'
+    weight: 100
+    type: "text"
+    regex:
+      source: '^(?:\d|1?\d\d|2[0-4]\d|25[0-5])(?:\.(?:\d|1?\d\d|2[0-4]\d|25[0-5])){3}$'
+      error: "Invalid IP address"
+  dcp_keystone_host:
+    value: '135.0.10.1'
+    label: 'Keystone host or ip'
+    description: 'The DCP`s Keystone service endpoint host'
+    weight: 110
+    type: "text"
+    regex:
+      source: '\S'
+      error: "Error field cannot be empty"
+  lcp_db_host:
+    value: '135.0.10.1'
+    label: 'LCP database ip or host'
+    description: 'The LCP`s Database host'
+    weight: 111
+    type: "text"
+    regex:
+      source: '\S'
+      error: "Error field cannot be empty"
+  amqp_port:
+    value: '5678'
+    label: 'RabbitMQ port'
+    description: 'The AMQP port'
+    weight: 112
+    type: "text"
+    regex:
+      source: '\S'
+      error: "Error field cannot be empty"
+  nova:
+    value: "nova"
+    label: "Nova MachID\t\t"
+    description: "MachID for Nova"
+    weight: 120
+    type: "text"
+  nova_password:
+    value: "nova_password"
+    label: "Nova Password\t\t"
+    description: "Password for Nova"
+    weight: 130
+    type: "password"
+  neutron:
+    value: "neutron"
+    label: "Neutron MachID\t\t"
+    description: "MachID for Neutron"
+    weight: 140
+    type: "text"
+  neutron_password:
+    value: "neutron_password"
+    label: "Neutron Password\t\t"
+    description: "Password for Neutron"
+    weight: 150
+    type: "password"
+  glance:
+    value: "glance"
+    label: "Glance MachID\t\t"
+    description: "MachID for Glance"
+    weight: 160
+    type: "text"
+  glance_password:
+    value: "glance_password"
+    label: "Glance Password\t\t"
+    description: "Password for Glance"
+    weight: 170
+    type: "password"
+  cinder:
+    value: "cinder"
+    label: "Cinder MachID\t\t"
+    description: "MachID for Cinder"
+    weight: 180
+    type: "text"
+  cinder_password:
+    value: "cinder_password"
+    label: "Cinder Password\t\t"
+    description: "Password for Cinder"
+    weight: 190
+    type: "password"
+  ceilometer:
+    value: "ceilometer"
+    label: "Ceilometer MachID\t\t"
+    description: "MachID for Ceilometer"
+    weight: 200
+    type: "text"
+  ceilometer_password:
+    value: "ceilometer_password"
+    label: "Ceilometer Password\t\t"
+    description: "Password for Ceilometer"
+    weight: 210
+    type: "password"
+  heat:
+    value: "heat"
+    label: "Heat MachID"
+    description: "MachID for Heat/Heat-cfn\t\t"
+    weight: 220
+    type: "text"
+  heat_password:
+    value: "heat_password"
+    label: "Heat Password\t\t"
+    description: "Password for Heat/Heat-cfn"
+    weight: 230
+    type: "password"
