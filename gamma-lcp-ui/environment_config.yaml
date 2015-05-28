@@ -122,3 +122,9 @@ attributes:
     description: "Password for Heat/Heat-cfn"
     weight: 230
     type: "password"
+  raw_additional_config:
+    type: "textarea"
+    weight: 52
+    value: ""
+    label: "Additional config"
+    description: "Just put here valid yaml"
