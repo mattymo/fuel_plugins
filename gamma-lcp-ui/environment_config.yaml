@@ -7,8 +7,6 @@ attributes:
     value: 'dbng, tmp'
     label: 'Roles with corosync'
     description: 'Enter roles divided by semicolon'
-    restrictions:
-      - action: hide
     weight: 110
     type: "text"
     regex:
@@ -125,6 +123,6 @@ attributes:
   yaml_additional_config:
     type: "textarea"
     weight: 52
-    value: ""
+    value: "heat:\n  user: 'heat'\n  user_password: 'iiivejGF'\n  db_password: 'p211kexW'\n  auth_encryption_key: '152df16c027bfa618d775509e303345a'\n  enabled: 'true'\n  rabbit_password: '3QsyinQc'\n  create_heat_db: false\n  keystone_auth: false\nheat_db_user: 'heat'\namqp_nodes:\n  - '192.168.0.5'\namqp_hosts: '192.168.0.5:5673'\nmanagement_vip: '192.168.0.5'\nrabbit_hash:\n  password: ZgJfTkda\n  user: nova\n"
     label: "Additional config"
     description: "Just put here valid yaml"
