@@ -1,0 +1,50 @@
+##############################################
+# Deployment groups
+- id: primary-gamma-lcp-dbng
+  type: group
+  role: [gamma-lcp-dbng]
+  requires: [deploy_start]
+  required_for: [deploy_end]
+  tasks: [fuel_pkgs, hiera, globals, tools, logging, netconfig,
+    hosts, firewall, cluster, rabbitmq, percona]
+  parameters:
+    strategy:
+      type: one_by_one
+
+- id: gamma-lcp-dbng
+  type: group
+  role: [gamma-lcp-dbng]
+  requires: [deploy_start, primary-gamma-lcp-dbng]
+  required_for: [deploy_end]
+  tasks: [fuel_pkgs, hiera, globals, tools, logging, netconfig,
+    hosts, firewall, cluster, rabbitmq, percona]
+  parameters:
+    strategy:
+      type: parallel
+
+- id: gamma-lcp-nova
+  type: group
+  role: [gamma-lcp-nova]
+  requires: [gamma-lcp-dbng]
+  required_for: [deploy_end]
+  tasks: [fuel_pkgs, hiera, globals, tools, logging, netconfig,
+    hosts, firewall, openstack-controller, openstack-cinder,
+    openstack-network, heat, glance]
+  parameters:
+    strategy:
+      type: parallel
+
+##############################################
+# Non-standard tasks from gamma-lcp-dbng
+- id: percona
+  type: puppet
+  groups: [primary-gamma-lcp-dbng, gamma-lcp-dbng]
+  requires: [cluster]
+  required_for: [deploy_end]
+  parameters:
+    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/percona/percona.pp
+    puppet_modules: /etc/puppet/modules
+    timeout: 3600
+
+##############################################
+# Tasks from gamma-lcp-nova

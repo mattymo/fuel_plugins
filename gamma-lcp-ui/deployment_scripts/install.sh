@@ -14,19 +14,16 @@ function debug {
   if $DEBUG; then
     echo $@
   fi
-
 }
 
-function run {
-
+function create_roles {
   for role in ${roles[@]}; do
      $FUEL role --rel $REL --create --file ${DIR}/${role}.yaml
      debug $role
   done
-
-  $FUEL  rel --sync-deployment-tasks --dir /etc/puppet/
 }
 
+create_roles
+cp -a ${DIR}/gamma-lcp /etc/puppet/modules/osnailyfacter/modular/
+$FUEL  rel --sync-deployment-tasks --dir /etc/puppet/
 
-
-run
