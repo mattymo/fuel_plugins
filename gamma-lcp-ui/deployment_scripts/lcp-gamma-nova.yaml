@@ -1,0 +1,8 @@
+meta:
+  description: LCP node: NOVA, GLANCE, CINDER, CEILOMETER, NEITRON
+  has_prixmary: false
+  name: LCP_NOVA
+name: lcpnova
+volumes_roles_mapping:
+  - allocate_size: min
+    id: os

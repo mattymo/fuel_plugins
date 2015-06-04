@@ -3,7 +3,7 @@ name: gamma-lcp-ui
 # Human-readable name for your plugin
 title: The Gamma LCP nova plugin
 # Plugin version
-version: '1.1.9'
+version: '1.2.3'
 # Description
 description: Allows to change LCP variables in UI
 # Required fuel version

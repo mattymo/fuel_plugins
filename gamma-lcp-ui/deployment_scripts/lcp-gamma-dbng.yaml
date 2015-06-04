@@ -1,0 +1,8 @@
+meta:
+  description: LCP DB and RabbitMQ clusters
+  has_prixmary: false
+  name: LCP_DBNG
+name: lcpdbng
+volumes_roles_mapping:
+  - allocate_size: min
+    id: os
