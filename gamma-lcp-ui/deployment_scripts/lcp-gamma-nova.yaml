@@ -1,5 +1,5 @@
 meta:
-  description: LCP node: NOVA, GLANCE, CINDER, CEILOMETER, NEITRON
+  description: 'LCP node: NOVA, GLANCE, CINDER, CEILOMETER, NEUTRON'
   has_prixmary: false
   name: LCP_NOVA
 name: lcpnova

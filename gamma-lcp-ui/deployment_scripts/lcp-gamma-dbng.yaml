@@ -1,5 +1,5 @@
 meta:
-  description: LCP DB and RabbitMQ clusters
+  description: 'LCP DB and RabbitMQ clusters'
   has_prixmary: false
   name: LCP_DBNG
 name: lcpdbng
