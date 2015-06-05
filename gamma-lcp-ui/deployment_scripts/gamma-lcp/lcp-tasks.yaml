@@ -42,7 +42,7 @@
   requires: [cluster]
   required_for: [deploy_end]
   parameters:
-    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/percona/percona.pp
+    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/gamma-lcp/percona.pp
     puppet_modules: /etc/puppet/modules
     timeout: 3600
 
