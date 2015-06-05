@@ -1,0 +1,8 @@
+meta:
+  description: 'LCP DB and RabbitMQ clusters'
+  has_primary: true
+  name: 'GAMMA LCP DBNG'
+name: gamma-lcp-dbng
+volumes_roles_mapping:
+  - allocate_size: min
+    id: os
