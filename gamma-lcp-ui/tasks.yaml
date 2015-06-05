@@ -6,11 +6,5 @@
   stage: pre_deployment
   type: shell
   parameters:
-    cmd: ln -s `grep gamma-lcp-ui /etc/*.yaml -l` /etc/astute.yaml
+    cmd: echo OK
     timeout: 30
-- role: '*'
-  stage: pre_deployment
-  type: shell
-  parameters:
-    cmd: ./deploy.py gamma-lcp-ui
-    timeout: 42

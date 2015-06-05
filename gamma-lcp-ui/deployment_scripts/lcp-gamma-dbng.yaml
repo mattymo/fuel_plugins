@@ -1,8 +1,0 @@
-meta:
-  description: 'LCP DB and RabbitMQ clusters'
-  has_prixmary: false
-  name: 'GAMMA LCP DBNG'
-name: gamma-lcp-dbng
-volumes_roles_mapping:
-  - allocate_size: min
-    id: os

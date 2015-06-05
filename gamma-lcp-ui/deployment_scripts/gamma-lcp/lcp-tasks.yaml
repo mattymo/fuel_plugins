@@ -22,6 +22,19 @@
     strategy:
       type: parallel
 
+- id: primary-gamma-lcp-nova
+  type: group
+  role: [primary-gamma-lcp-nova]
+  requires: [gamma-lcp-dbng]
+  required_for: [deploy_end]
+  tasks: [fuel_pkgs, hiera, globals, tools, logging, netconfig,
+    hosts, firewall, openstack-controller, openstack-cinder,
+    openstack-network, heat, glance, cluster, cluster-vrouter,
+    virtual_ips, conntrackd, cluster-haproxy, openstack-haproxy]
+  parameters:
+    strategy:
+      type: one_by_one
+
 - id: gamma-lcp-nova
   type: group
   role: [gamma-lcp-nova]
@@ -29,13 +42,14 @@
   required_for: [deploy_end]
   tasks: [fuel_pkgs, hiera, globals, tools, logging, netconfig,
     hosts, firewall, openstack-controller, openstack-cinder,
-    openstack-network, heat, glance]
+    openstack-network, heat, glance, cluster, cluster-vrouter,
+    virtual_ips, conntrackd, cluster-haproxy, openstack-haproxy]
   parameters:
     strategy:
       type: parallel
 
 ##############################################
-# Non-standard tasks from gamma-lcp-dbng
+# Non-standard tasks
 - id: percona
   type: puppet
   groups: [primary-gamma-lcp-dbng, gamma-lcp-dbng]
@@ -46,5 +60,13 @@
     puppet_modules: /etc/puppet/modules
     timeout: 3600
 
-##############################################
-# Tasks from gamma-lcp-nova
+- id: deploy-hiera-override
+  type: puppet
+  groups: [primary-gamma-lcp-dbng, gamma-lcp-dbng, primary-gamma-lcp-nova, gamma-lcp-nova]
+  requires: [globals]
+  required_for: [logging]
+  parameters:
+    puppet_manifest: /etc/puppet/modules/osnailyfacter/modular/gamma-lcp/deploy_hiera_override.pp
+    puppet_modules: /etc/puppet/modules
+    timeout: 120
+

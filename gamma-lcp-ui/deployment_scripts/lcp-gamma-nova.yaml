@@ -1,8 +1,0 @@
-meta:
-  description: 'LCP node: NOVA, GLANCE, CINDER, CEILOMETER, NEUTRON'
-  has_prixmary: false
-  name: 'GAMMA LCP NOVA'
-name: gamma-lcp-nova
-volumes_roles_mapping:
-  - allocate_size: min
-    id: os
